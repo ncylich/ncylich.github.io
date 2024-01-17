@@ -1,0 +1,286 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    background-color: #0061FF;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body a {
+    color: #bbf;
+}
+
+body a:visited {
+    color: #daf;
+}
+
+body a:hover {
+    color: #99d;
+}
+
+/* Navigation Bar Styling */
+nav {
+    color: #000000;
+    background: #FFF;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin-left: 20px; /* Spacing between nav items */
+}
+
+nav a {
+    color: #000; /* Text color */
+    background-color:#fff;
+    text-decoration: none;
+}
+
+nav a:visited {
+    color: #000;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+
+/* Header Styling */
+header {
+    color: #000;
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none; /* Optional: removes the bullet or number */
+}
+
+
+/* Section Styling */
+section {
+    border-bottom: 1.5px solid white;
+    padding-left: 40px;
+    padding-right: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Footer Styling */
+footer {
+    background: #0061FF;
+    color: #fff;
+    display: flex; /* Use flexbox */
+    justify-content: center;
+    align-items: center; /* Center vertically */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    border-top: 1.5px solid white;
+}
+
+/* Form Styling */
+form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    color: black;
+    border-radius: 8px;
+}
+
+input[type=text], input[type=email], textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4faaff;
+    color: black;
+    padding: 14px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #3a8abf;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.margin-top {
+    margin-top: 20px;
+}
+
+/* Header Container */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Adjust padding as needed */
+    background: #FFF; /* Background color of the header */
+}
+
+/* Brand Name Styling */
+.brand-name h1 {
+    margin: 0;
+    font-size: 1.5em; /* Adjust font size as needed */
+    color: #000; /* Adjust color as needed */
+}
+
+/* Personal Statement Section */
+.personal-statement {
+    text-align: left;
+}
+
+/* Contact Information Section */
+.contact-information {
+    padding: 20px;
+    text-align: center;
+}
+
+.contact-information h2 {
+    margin-top: 20px;
+}
+
+/* Slider Container */
+.slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Individual Slides */
+.slide {
+    display: none; /* Hide slides by default */
+    width: 100%;
+    display: none;
+}
+
+.slide_padding {
+    padding-left: 30px;
+}
+
+/* Show only the first slide */
+#techExperienceSlider .slide:first-child {
+    display: block;
+}
+
+
+/* Navigation Arrows */
+.slide-arrow {
+    position: fixed;
+    top: 33%;
+    transform: translateY(-33%);
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 15px;
+    font-size: 25px;
+    z-index: 1000;
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+
+/* Initially display the first slide */
+.slide:first-child {
+    display: block;
+}
+
+/* Slider Dots */
+.slider-dots {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #00d;
+}
+
+.content-container {
+    display: flex; /* Enables Flexbox */
+    align-items: center; /* Vertically centers items in the container */
+    gap: 20px; /* Optional: adds space between image and text */
+}
+
+.section-image {
+    width: 30%; /* Or your desired width */
+    height: auto; /* Maintains aspect ratio */
+}
+
+.text-content {
+    flex-grow: 1; /* Allows text content to take up remaining space */
+    text-align: left;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    nav li {
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .content-container {
+        flex-direction: column; /* Stacks items vertically */
+    }
+
+    .section-image {
+        width: 100%; /* Full width on small screens */
+        height: auto;
+        margin-bottom: 15px; /* Adds some space below the image */
+    }
+}
