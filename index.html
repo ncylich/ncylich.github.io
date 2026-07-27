@@ -1,61 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noah Cylich | Home</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noah Cylich</title>
+<meta name="description" content="Noah Cylich. I make large models run in less memory than they should need.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f7f7f5; --ink:#17181a; --muted:#696c6e; --rule:#e0e1de;
+  --accent:#2f5d3f; --accent-soft:#e8efe9;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#121418;--ink:#e8e9e6;--muted:#93989b;--rule:#262a2f;
+        --accent:#8fc0a0;--accent-soft:#1a221d;}
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:17px;line-height:1.65;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:780px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule);
+  transition:border-color .15s,color .15s}
+a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+
+header{padding:88px 0 54px}
+.hero{display:grid;grid-template-columns:150px 1fr;gap:34px;align-items:start}
+.portrait{width:150px;height:190px;object-fit:cover;object-position:center 20%;
+  border-radius:3px;background:var(--accent-soft)}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,6vw,3.3rem);
+  line-height:1.02;margin:0 0 14px;letter-spacing:-.02em}
+.tag{font-family:var(--serif);font-size:1.22rem;line-height:1.42;margin:0 0 18px;font-weight:400}
+.tag em{font-style:italic;color:var(--accent)}
+.blurb{color:var(--muted);font-size:.99rem;margin:0 0 20px;max-width:52ch}
+.links{display:flex;flex-wrap:wrap;gap:8px 20px;font-family:var(--mono);
+  font-size:.8rem;letter-spacing:.02em}
+.links a{border-bottom:1px solid transparent;color:var(--muted)}
+.links a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+
+.event{margin:0 0 64px;border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);padding:26px 0}
+.event figure{margin:0;display:grid;grid-template-columns:1fr 210px;gap:26px;align-items:center}
+.event img{width:100%;border-radius:3px;display:block;background:var(--accent-soft)}
+.event figcaption{font-size:.95rem;color:var(--muted)}
+.event .when{font-family:var(--mono);font-size:.72rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--accent);display:block;margin-bottom:7px}
+
+h2{font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;
+  margin:0 0 10px;padding-bottom:9px;border-bottom:1px solid var(--rule)}
+.lede{color:var(--muted);font-size:.92rem;margin:0 0 26px;max-width:58ch}
+section{margin-bottom:62px}
+
+/* timeline of organizations */
+.tl{position:relative;margin:0;padding:0 0 0 112px;list-style:none}
+.tl::before{content:"";position:absolute;left:92px;top:10px;bottom:10px;
+  width:1px;background:var(--rule)}
+.tl>li{position:relative;margin-bottom:8px}
+.tl .date{position:absolute;left:-112px;top:14px;width:80px;text-align:right;
+  font-family:var(--mono);font-size:.72rem;color:var(--muted);line-height:1.5}
+.tl>li::before{content:"";position:absolute;left:-21px;top:20px;width:7px;height:7px;
+  border-radius:50%;background:var(--paper);border:1.5px solid var(--rule);z-index:1}
+.tl>li.mark::before{background:var(--accent);border-color:var(--accent)}
+
+details{border-bottom:1px solid var(--rule);padding:12px 0}
+details[open]{padding-bottom:20px}
+summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;
+  gap:10px;flex-wrap:wrap}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--mono);font-size:.95rem;color:var(--muted);
+  margin-left:auto;transition:transform .18s,color .18s;flex:none}
+details[open] summary::after{content:"\2212";color:var(--accent)}
+summary:hover .name{color:var(--accent)}
+.name{font-family:var(--serif);font-size:1.12rem;font-weight:600;line-height:1.3}
+.role{font-size:.86rem;color:var(--muted)}
+.body{padding-top:12px}
+.body p{margin:0 0 12px;font-size:.95rem;color:var(--muted);max-width:60ch}
+.body p:last-child{margin-bottom:0}
+.body ul{margin:0;padding-left:18px;font-size:.93rem;color:var(--muted)}
+.body li{margin-bottom:6px;max-width:58ch}
+.body li:last-child{margin-bottom:0}
+.body b{color:var(--ink);font-weight:600}
+
+/* early years */
+.early{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px 34px}
+.early h3{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);font-weight:500;margin:0 0 9px}
+.early ul{margin:0;padding-left:17px;font-size:.92rem;color:var(--muted)}
+.early li{margin-bottom:6px}
+
+.papers{list-style:none;margin:0;padding:0}
+.papers li{margin-bottom:19px;padding-left:16px;border-left:2px solid var(--rule)}
+.papers li.first{border-left-color:var(--accent)}
+.papers .t{font-family:var(--serif);font-size:1.02rem;font-weight:600;
+  display:block;margin-bottom:2px;line-height:1.4}
+.papers a{border-bottom:none}
+.papers a:hover .t{color:var(--accent)}
+.papers .a{font-size:.85rem;color:var(--muted);display:block}
+.papers .a b{font-weight:600;color:var(--ink)}
+.papers .v{font-family:var(--mono);font-size:.72rem;color:var(--accent);
+  display:block;margin-top:4px;letter-spacing:.03em}
+
+footer{border-top:1px solid var(--rule);padding:26px 0 70px;font-size:.9rem;color:var(--muted)}
+footer p{margin:0 0 6px}
+
+@media (max-width:660px){
+  body{font-size:16px}
+  header{padding:56px 0 40px}
+  .hero{grid-template-columns:1fr;gap:22px}
+  .portrait{width:126px;height:158px}
+  .event figure{grid-template-columns:1fr}
+  .event figcaption{order:2}
+  .tl{padding-left:0}
+  .tl::before,.tl>li::before{display:none}
+  .tl .date{position:static;width:auto;text-align:left;display:block;
+    margin-bottom:2px;color:var(--accent);padding-top:10px}
+  .tl>li{margin-bottom:0}
+}
+</style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="brand-name">
-                <h1>Noah Cylich</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="experiences.html">Experiences</a></li>
-                    <!--
-                    <li><a href="education.html">Education</a></li>
-                    <li><a href="tech_experience.html">Technical Experience</a></li>
-                    <li><a href="leadership.html">Leadership & Projects</a></li>
-                    <li><a href="skills.html">Skills & Interests</a></li>
-                    -->
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <section>
-        <div class="content-container">
-            <div class="text-content">
-                <div class="personal-statement">
-                    <p>Hello! I'm Noah Cylich and welcome to my personal website.</P>
-                    <p>I am a UCLA class of 27 Computer Science studuent with a passion for AI, cybersecurity, back-end development, and biocomputation.</p>
-                </div>
-            </div>
-            <img src="grad_photo.png" alt="Graduation Photo" class="section-image">
-        </div>
-    </section>
-    
-    <!--
-    <section class="personal-statement">
-        <p>Hello! I'm Noah Cylich and welcome to my personal website.</P>
-        <p>I am a UCLA class of 27 Computer Science studuent with a passion for AI, cybersecurity, back-end development, and biocomputation.</p>
-    </section>
-    -->
+<div class="wrap">
 
-    <section>
-        <h2>Contact Information</h2>
-        <p>Email: <a href="mailto:noahcylich@gmail.com">noahcylich@gmail.com</a></p>
-        <p>School Email: <a href="mailto:noahcylich@ucla.edu">noahcylich@ucla.edu</a></p>
-        <p>Phone: (215) 350-0570</p>
-        <p>GitHub: <a href="https://github.com/ncylich">github.com/ncylich</a></p>
-        <p>LinkedIn: <a href="https://linkedin.com/in/noahcylich">linkedin.com/in/noahcylich</a></p>
-        <p>Resume: <a href="Noah_Cylich.pdf">Noah_Cylich.pdf</a></p>
-    </section>
-    <footer>
-        <p>&copy; 2023 Noah Cylich</p>
-    </footer>
+<header>
+  <div class="hero">
+    <img class="portrait" src="headshot.jpg" alt="Noah Cylich">
+    <div>
+      <h1>Noah Cylich</h1>
+      <p class="tag">I make large models run in <em>less memory than they should need</em>.</p>
+      <p class="blurb">CS at UCLA, finishing this December. Most of what I do comes back to one
+      observation, that only a fraction of a transformer matters for any given token, and you can
+      spend that fact on speed or on memory. I have spent two years spending it.</p>
+      <nav class="links">
+        <a href="https://github.com/ncylich">github</a>
+        <a href="https://www.linkedin.com/in/noahcylich">linkedin</a>
+        <a href="mailto:noahcylich@gmail.com">noahcylich@gmail.com</a>
+        <a href="Noah_Cylich.pdf">cv</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="event">
+  <figure>
+    <figcaption>
+      <span class="when">July 2026 &middot; Seoul</span>
+      Presenting CLAWS at ICML. The paper sparsifies gated MLPs to half density without losing
+      accuracy, and the part I like most is the section working out why the trick reorders one
+      kind of router and refuses to touch another.
+    </figcaption>
+    <img src="icml-claws.jpg" alt="Presenting the CLAWS poster at ICML 2026 in Seoul">
+  </figure>
+</div>
+
+<section>
+  <h2>Where I have worked</h2>
+  <p class="lede">Ordered by when I joined. Open any of them for what I actually did there.</p>
+  <ol class="tl">
+
+    <li class="mark">
+      <span class="date">Nov 2025</span>
+      <details open>
+        <summary><span class="name">Cactus Compute</span><span class="role">ML engineer and researcher</span></summary>
+        <div class="body">
+          <p>An open source inference engine for phones, wearables, and anything else without a
+          datacenter behind it. Third largest contributor across 53 merged pull requests. Almost
+          everything I know about inference I learned here, mostly by being wrong first.</p>
+          <ul>
+            <li><b>Gemma 4, fully multimodal on launch day.</b> Wrote the model end to end and
+            shipped every modality the day it went public, which nobody outside Google managed.
+            Most of that week went on the precision fixes that let the audio encoder survive
+            Apple's Neural Engine.</li>
+            <li><b>ARM decode kernels.</b> Made small matmuls 3x faster, which lifted Gemma 4 E2B
+            decode by 50%. Separately wrote a hybrid INT8/FP16 attention kernel that doubled
+            attention throughput during decode without moving accuracy.</li>
+            <li><b>Quantization.</b> Co-authored the INT4 weight kernels behind the engine's
+            low-bit decode path.</li>
+            <li><b>Long context on a phone.</b> Built KeyDiff KV-cache compaction and native
+            chunked prefill, which made 8k-plus tokens usable where it previously was not.</li>
+            <li><b>More models.</b> Whisper v3 and Parakeet-TDT speech recognition, with Parakeet
+            accelerated on the Neural Engine, plus the Nomic mixture-of-experts text embedder.</li>
+            <li><b>Cross-device benchmarking</b> across Mac, Samsung and Pixel, which is where the
+            LM-head layout change and the Android core scheduling work came from.</li>
+            <li><b>The Go cloud backend</b> that every cloud hand-off request from the engine
+            terminates at.</li>
+            <li><b>LoRA merging in Tunix.</b> Worked with Google's Tunix team to add merging and
+            Hugging Face export for Gemma and Qwen models directly into their engine.</li>
+            <li><b>Papers.</b> CLAWS as first author, plus HiDRA, TACE, and a controlled study of
+            attention-only transformers.</li>
+          </ul>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <span class="date">Jun 2025</span>
+      <details>
+        <summary><span class="name">Google</span><span class="role">Software engineer intern, twice</span></summary>
+        <div class="body">
+          <p>Two summers, two teams that had almost nothing to do with each other.</p>
+          <ul>
+            <li><b>App Ads, 2026.</b> An agentic pipeline for extracting and generating game
+            imagery using Gemini and SAM 2, plus a caching layer over the video annotation
+            system.</li>
+            <li><b>Database, 2025.</b> An automated presubmit testing framework in C++ for Napa,
+            the exabyte-scale database sitting under things like AdSense, so no schema change
+            ships unvalidated. Also added repeatable read support so DeepMind's queries against
+            it stayed consistent.</li>
+          </ul>
+        </div>
+      </details>
+    </li>
+
+    <li class="mark">
+      <span class="date">Sep 2024</span>
+      <details>
+        <summary><span class="name">PLUS Lab, UCLA</span><span class="role">LLM researcher</span></summary>
+        <div class="body">
+          <p>Professor Peng's lab. Her NLP course gave me the historical grounding I had been
+          working without. I knew transformers and had no idea how the field arrived at them, and
+          those older techniques still turn up in the analysis I do now.</p>
+          <ul>
+            <li><b>Temporal Mixture-of-Experts.</b> An MoE trained so consecutive tokens reuse all
+            but one expert, which lets serving memory scale with active parameters instead of
+            total. The interesting part came after training. The router had quietly reorganised,
+            and its experts had stopped keying on words.</li>
+            <li><b>IE Benchmark.</b> A benchmark for where LLMs fall down on information
+            extraction.</li>
+          </ul>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <span class="date">Jun 2024</span>
+      <details>
+        <summary><span class="name">Microsoft</span><span class="role">Software engineer intern, cybersecurity</span></summary>
+        <div class="body">
+          <ul>
+            <li>Closed a man-in-the-middle hole in the Entra core authentication service.</li>
+            <li>Built an ASP.NET tool backed by an LLM for assessing how badly a client's
+            authentication would break under pressure, with database plugins and secretless
+            multi-tenant auth. It closed 99% of one Fortune 100 client's resiliency gap.</li>
+          </ul>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <span class="date">Fall 2023</span>
+      <details>
+        <summary><span class="name">Bruin AI</span><span class="role">Technical director</span></summary>
+        <div class="body">
+          <p>UCLA's AI club. I ran the technical side for two years, which mostly meant finding
+          real clients for students who had never had one.</p>
+          <ul>
+            <li>Led five engineers building a security assessment system for Cymetrx, a startup,
+            working with the founder from scoping through a shipped demo. It mapped CVEs onto
+            security domains and then onto NIST 800-53 and HIPAA controls, with remediation.</li>
+            <li>Taught a quarter-long AI course for incoming members that started at neural
+            networks and ended somewhere inside transformers.</li>
+            <li>Consulted for Artifactual AI and ran the hackathon that pushed them toward a
+            business marketplace.</li>
+            <li>Project managed the self-driving car initiative, back when I had no business
+            managing anything.</li>
+          </ul>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <span class="date">Sep 2023</span>
+      <details>
+        <summary><span class="name">Sack &amp; Yarov-Yarovoy Lab, UC Davis</span><span class="role">Biocomputation researcher</span></summary>
+        <div class="body">
+          <p>Mentored by Brandon Harris under Dr. Vladimir Yarov-Yarovoy. My first exposure to
+          the idea that a model could tell you something true about the physical world.</p>
+          <ul>
+            <li>Generated synthetic structures of the Kv2.1 potassium ion channel with AlphaFold,
+            accurate to under 0.1 nm RMSD.</li>
+            <li>Used RosettaFold and MPNN to design binders that modify the channel's kinetics,
+            for studying neuron behaviour and its role in epileptic encephalopathy (DEE26).</li>
+          </ul>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <span class="date">Jul 2022</span>
+      <details>
+        <summary><span class="name">Rutgers Medical School</span><span class="role">High school research internship</span></summary>
+        <div class="body">
+          <ul>
+            <li>Researched the effects of Interferon-lambda under Dr. Sergey Smirnov, specifically
+            its impact on murine epithelial intestinal cell growth in infected cultures, to get at
+            the causes of Crohn's disease and IBS.</li>
+            <li>Presented at a collegiate poster session, at seventeen, to a room that was
+            noticeably older than me.</li>
+          </ul>
+        </div>
+      </details>
+    </li>
+
+  </ol>
+</section>
+
+<section>
+  <h2>Before all of that</h2>
+  <p class="lede">The things I built or won or practised before any of it was a career, which is
+  most of the reason there is a career.</p>
+  <div class="early">
+
+    <div>
+      <h3>Things I built</h3>
+      <ul>
+        <li>A chess engine, over one winter break. An encoder-only transformer that reached
+        roughly 2000 Elo on Lichess. I built it for no reason beyond wanting to understand
+        transformers, and building it is how I did.</li>
+        <li>A search engine for a search fund client, scraping over three million sites and
+        ranking them with a transformer.</li>
+        <li>A stroke prediction model with 3D visualisations of how the risk factors interact.</li>
+        <li>A note-taking system that turned audio into structured notes and filed them to Drive.</li>
+        <li>A password manager in Python over MySQL with SHA256.</li>
+        <li>A Neovim extension for locally run coding models, written in Lua.</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Competitions</h3>
+      <ul>
+        <li>Tied for first at Lockheed Martin's Cyber Quest.</li>
+        <li>Third at Lockheed Martin's Code Quest, which was the bigger one.</li>
+        <li>Gold in the USA Computing Olympiad.</li>
+      </ul>
+      <h3 style="margin-top:22px">Tennis</h3>
+      <ul>
+        <li>Varsity captain, 2019 to 2023. Third singles as a sophomore, second as a junior, first
+        my senior year. Still play, still lose to people who started younger.</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Piano</h3>
+      <ul>
+        <li>Playing since I was five. Performed at Carnegie Hall and the Kennedy Center, and in
+        Vienna and Padova.</li>
+        <li>Ran my own volunteer concerts at my grandmother's retirement home, which were smaller
+        rooms and better audiences.</li>
+      </ul>
+      <h3 style="margin-top:22px">Other</h3>
+      <ul>
+        <li>3D printing, model rocketry, and high-voltage ultraviolet lasers. My parents were
+        patient.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Papers</h2>
+  <ul class="papers">
+    <li class="first">
+      <a href="https://openreview.net/forum?id=kdZbHVOjd6"><span class="t">CLAWS: Calibration-Aware Activation Sparsity for Instruction-Tuned LLMs</span></a>
+      <span class="a"><b>N. Cylich</b>, K. Mosoyan, H. Ndubuaku, R. Shemet</span>
+      <span class="v">ICML 2026, AdaptFM Workshop</span>
+    </li>
+    <li class="first">
+      <a href="https://github.com/ncylich/temporal-moe/blob/main/paper/main.pdf"><span class="t">Temporal Mixture-of-Experts: Serving Memory that Scales with Active Parameters</span></a>
+      <span class="a"><b>N. Cylich</b></span>
+      <span class="v">In preparation</span>
+    </li>
+    <li>
+      <a href="https://openreview.net/forum?id=I02VQSYShw"><span class="t">HiDRA: A Blazing Fast LM-Head Replacement</span></a>
+      <span class="a">S. Kumar, H. Ndubuaku, <b>N. Cylich</b>, K. Mosoyan, P. Sandhu, J. Lee, J. Mroz</span>
+      <span class="v">ICLR 2026, Test-Time Updates Workshop</span>
+    </li>
+    <li>
+      <a href="https://arxiv.org/abs/2607.18363"><span class="t">A Controlled Study of Attention-Only Transformers</span></a>
+      <span class="a">H. Ndubuaku, K. Mosoyan, J. Mroz, <b>N. Cylich</b>, S. Kumar, P. Sandhu, R. Shemet, J. Lee</span>
+      <span class="v">arXiv preprint, 2026</span>
+    </li>
+    <li>
+      <a href="https://openreview.net/forum?id=yUIOXlBYtP"><span class="t">TACE: Token-Aware Chunked Encoding</span></a>
+      <span class="a">P. Sandhu, H. Ndubuaku, K. Mosoyan, S. Kumar, J. Lee, <b>N. Cylich</b>, J. Mroz</span>
+      <span class="v">ICLR 2026, NFAM Workshop</span>
+    </li>
+  </ul>
+</section>
+
+<footer>
+  <p>Away from a terminal I play tennis, travel more than is reasonable, and own an indefensible
+  number of polos.</p>
+  <p>Los Angeles. Reach me at <a href="mailto:noahcylich@gmail.com">noahcylich@gmail.com</a>.</p>
+</footer>
+
+</div>
 </body>
 </html>
